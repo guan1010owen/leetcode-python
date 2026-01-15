@@ -31,18 +31,13 @@
 # 原题目链接：https://leetcode.cn/problems/add-two-numbers/
 
 from modules.node import ListNode
-
-
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+from utils.list_node import create_node_from_list, print_node_list, convert_to_list
 
 
 def add_two_numbers(l1: ListNode, l2: ListNode) -> ListNode:
 
-    dummyhead = ListNode(0)
-    current = dummyhead
+    dummy = ListNode(0)
+    current = dummy
     carry = 0
 
     while l1 is not None or l2 is not None:
@@ -53,6 +48,7 @@ def add_two_numbers(l1: ListNode, l2: ListNode) -> ListNode:
 
         carry = sum // 10
         current.next = ListNode(sum % 10)
+        current = current.next
 
         if l1 is not None:
             l1 = l1.next
@@ -62,12 +58,31 @@ def add_two_numbers(l1: ListNode, l2: ListNode) -> ListNode:
         if carry > 0:
             current.next = ListNode(carry)
 
-        return dummyhead.next
+    return dummy.next
 
 
 def main():
-    l1 = ListNode(1)
-    l2 = ListNode(2)
+    lst0 = [2,4,3]
+    lst1 = [5,6,4]
+
+    lst2 = [0]
+    lst3 = [0]
+
+    lst4 = [9,9,9,9,9,9,9]
+    lst5 = [9,9,9,9]
+
+    l0 = create_node_from_list(lst0)
+    l1 = create_node_from_list(lst1)
+
+    l2 = create_node_from_list(lst2)
+    l3 = create_node_from_list(lst3)
+
+    l4 = create_node_from_list(lst4)
+    l5 = create_node_from_list(lst5)
+
+    print_node_list(add_two_numbers(l0, l1))
+    print_node_list(add_two_numbers(l2, l3))
+    print_node_list(add_two_numbers(l4, l5))
 
 if __name__ == '__main__':
     main()
