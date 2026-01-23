@@ -38,9 +38,6 @@ def reverse_integer(x):
     if negative:
         temp = -temp
 
-    while temp % 10 == 0:
-        temp = temp // 10
-
     while temp != 0:
 
         result = temp % 10
@@ -56,17 +53,34 @@ def reverse_integer(x):
 
     return -num if negative else num
 
+
+'''this function seems not work in python, a%b function works different in
+python when a is negative'''
+def reverse_integer_2(x):
+    result = 0
+
+    while x != 0:
+        temp = x % 10
+
+        if (result > pow(2 ,31) - 1 or result < -pow(2 ,31)):
+            return 0
+
+        result = result*10 + temp
+        x //= 10
+
+    return result
+
 def main():
-    # x1 = 123
-    # x2 = -123
-    # x3 = 120
-    # x4 = 0
+    x1 = 123
+    x2 = -123
+    x3 = 120
+    x4 = 1005
     x5 = 1534236469
 
-    # print(reverse_integer(x1))
-    # print(reverse_integer(x2))
-    # print(reverse_integer(x3))
-    # print(reverse_integer(x4))
+    print(reverse_integer(x1))
+    print(reverse_integer(x2))
+    print(reverse_integer(x3))
+    print(reverse_integer(x4))
     print(reverse_integer(x5))
 
 if __name__ == '__main__':
