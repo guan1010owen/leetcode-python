@@ -36,12 +36,28 @@ def palindromic_number(x):
 
     return True
 
+
+def is_palindromic(x):
+    if x < 0:
+        return False
+    reverse = 0
+    temp = x
+    while temp != 0:
+        reverse = reverse * 10 + temp % 10
+        temp //= 10
+
+    return reverse == x
+
+
 def main():
     num1 = 121
     num2 = -121
 
-    print(palindromic_number(num1))
-    print(palindromic_number(num2))
+    # print(palindromic_number(num1))
+    # print(palindromic_number(num2))
+
+    print(is_palindromic(num1))
+    print(is_palindromic(num2))
 
 if __name__ == '__main__':
     main()
